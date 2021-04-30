@@ -1,0 +1,78 @@
+## Variables
+set $left                       h
+set $down                       j
+set $up                         k
+set $right                      l
+set $mod                        Mod1
+set $term                       alacritty
+set $path                       ~/.config/sway
+set $lock                       swaylock -eu -i $path/lock -s fill
+set $browser                    MOZ_ENABLE_WAYLAND=1 firefox
+
+## Sway
+focus_follows_mouse             no
+workspace_auto_back_and_forth   yes
+default_border                  none
+xwayland                        disable
+input                           * xkb_layout "us"
+input                           * xkb_variant "dvp"
+output                          * bg $path/wall fill
+input                           * xkb_options "caps:escape"
+
+## Executables
+exec                            swayidle -w timeout 300 '$lock'
+exec                            $lock
+exec                            mako
+
+## Bindsyms
+bindsym   $mod+Return           exec $term
+bindsym   $mod+Space            exec $browser
+bindsym   $mod+Backspace        exec $lock
+
+bindsym   XF86AudioRaiseVolume  exec amixer set Master 5%+
+bindsym   XF86AudioLowerVolume  exec amixer set Master 5%-
+bindsym   XF86AudioMute         exec amixer set Master toggle
+bindsym   Print                 exec grim
+bindsym   $mod+Print            exec grim -g "$(slurp)"
+
+bindsym   $mod+q                kill
+bindsym   $mod+c                reload
+bindsym   Alt+Tab               workspace back_and_forth
+
+bindsym   $mod+$left            focus left
+bindsym   $mod+Shift+$left      move left
+bindsym   $mod+$down            focus down
+bindsym   $mod+Shift+$down      move down
+bindsym   $mod+$up              focus up
+bindsym   $mod+Shift+$up        move up
+bindsym   $mod+$right           focus right
+bindsym   $mod+Shift+$right     move right
+
+bindsym   F1                    workspace number 1
+bindsym   $mod+F1               move container to workspace number 1
+bindsym   F2                    workspace number 2
+bindsym   $mod+F2               move container to workspace number 2
+bindsym   F3                    workspace number 3
+bindsym   $mod+F3               move container to workspace number 3
+bindsym   F4                    workspace number 4
+bindsym   $mod+F4               move container to workspace number 4
+bindsym   F5                    workspace number 5
+bindsym   $mod+F5               move container to workspace number 5
+bindsym   F6                    workspace number 6
+bindsym   $mod+F6               move container to workspace number 6
+bindsym   F7                    workspace number 7
+bindsym   $mod+F7               move container to workspace number 7
+bindsym   F8                    workspace number 8
+bindsym   $mod+F8               move container to workspace number 8
+bindsym   F9                    workspace number 9
+bindsym   $mod+F9               move container to workspace number 9
+bindsym   F10                   workspace number 10
+bindsym   $mod+F10              move container to workspace number 10
+bindsym   F11                   workspace number 11
+bindsym   $mod+F11              move container to workspace number 11
+bindsym   F12                   workspace number 12
+bindsym   $mod+F12              move container to workspace number 12
+
+## Assigns
+assign                          [app_id="firefox"] 12
+for_window                      [app_id="firefox"] inhibit_idle fullscreen
